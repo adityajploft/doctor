@@ -6,7 +6,7 @@ import Logo from "../images/logo.svg";
 import SignV from "../images/sign-up-img.svg";
 import varfyIcon from "../images/varfy-img.svg";
 import ModalClose from "../images/modal-close.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -14,11 +14,12 @@ const SignUp = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   const [show1, setShow1] = useState(false);
 
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
+
+  const { type } = useParams();
   return (
     <>
       <div className="login-main">
@@ -27,40 +28,54 @@ const SignUp = () => {
             <Col md={12}>
               <div className="login-out-box sign-upmain">
                 <Row>
-                  <Col lg={7} md={6}>
+                  {/* <Col lg={7} md={6}>
                     <div className="sign-up-dtl">
                       <img className="logo-img" src={Logo} />
 
                       <h1>
-                        #1 health record web app for doctors and patients and
-                        also for family members
+                        Simplified record keeping in health care
                       </h1>
                       <img className="img-fluid" src={SignV} />
                     </div>
-                  </Col>
-                  <Col lg={5} md={6}>
-                    <div className="login-sign-frm outr-frm-bx">
-                      <h2>Sign Up</h2>
-                      <from className="cmn-frm">
-                        <div className="form-group">
-                          <label>Mobile Number</label>
-                          <input
-                            type="text"
-                            placeholder="Enter Mobile Number"
-                          />
-                        </div>
-                        <div className="">
-                          <button
-                            className="primary-btn-btn mt-5"
-                            variant="primary"
-                            onClick={handleShow}
-                          >
-                            Let's Go
-                          </button>
-                        </div>
-                      </from>
-                    </div>
-                  </Col>
+                  </Col> */}
+                  <center>
+                    <Col lg={5} md={6}>
+                      <div className="login-sign-frm outr-frm-bx">
+                        <h2>Sign Up</h2>
+                        <form className="cmn-frm">
+                          {type == "mobile" ? (
+                            <div className="form-group">
+                              <label>Mobile Number</label>
+                              <input
+                                type="text"
+                                placeholder="Enter Mobile Number"
+                              />
+                            </div>
+                          ) : (
+                            <div className="form-group">
+                              <label>Email</label>
+                              <input
+                                type="email"
+                                placeholder="Enter Email Address"
+                              />
+                            </div>
+                          )}
+                          <div className="">
+                            <button
+                              className="primary-btn-btn mt-5"
+                              variant="primary"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleShow();
+                              }}
+                            >
+                              Let's Go
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </Col>
+                  </center>
                 </Row>
               </div>
             </Col>
@@ -95,11 +110,9 @@ const SignUp = () => {
               <button
                 className="primary-btn-btn  my-5"
                 variant="primary"
-                onClick={()=>
-                {
-                  handleClose()
-                  handleShow1()
-
+                onClick={() => {
+                  handleClose();
+                  handleShow1();
                 }}
               >
                 Verify Now
@@ -112,7 +125,7 @@ const SignUp = () => {
           </div>
         </Modal.Body>
       </Modal>
- 
+
       <Modal
         show={show1}
         onHide={handleClose1}
@@ -126,20 +139,17 @@ const SignUp = () => {
               <img className="img-fluid" src={ModalClose} />
             </button>
             <img className="img-fluid mt-5" src={varfyIcon} />
-           
+
             <h2 className="hd-man-bx">Thank You!</h2>
             <p>
-            Your account has been created <br/> with the following username:
+              Your account has been created <br /> with the following username:
             </p>
-           
+
             <div className="">
-              <button
-                className="secondary-btn-btn mt-4" 
-              >
+              <Link to="/create-profile" className="secondary-btn-btn mt-4">
                 vistrit.1234567890
-              </button>
+              </Link>
             </div>
-          
           </div>
         </Modal.Body>
       </Modal>

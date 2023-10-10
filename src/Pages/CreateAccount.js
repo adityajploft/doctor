@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 // images
@@ -7,6 +7,9 @@ import Email from "../images/email-login.svg";
 import { Link } from "react-router-dom";
 
 const CreateAccount = () => {
+  const [type, setType] = useState("mobile");
+  const [Terms, setTerms] = useState(false);
+  const [previacy, setPrivacyPolicy] = useState(false);
   return (
     <>
       <div className="login-main">
@@ -15,29 +18,50 @@ const CreateAccount = () => {
             <Col md={12}>
               <div className="login-out-box select-role">
                 <h2>Create Account Using</h2>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing Lorem Ipsum
-                  is <br />
-                  simply dummy text of the printing and typesetting.
-                </p>
+
                 <Row className="justify-content-center">
                   <Col md={5}>
-                      <div className="role-box active">
+                    <div className="role-box">
+                      <Link to="/login/mobile">
                         <img src={Mobile} />
                         <h3>Mobile Number</h3>
-                      </div>
+                      </Link>
+                    </div>
                   </Col>
                   <Col md={5}>
-                      <div className="role-box">
+                    <div className="role-box">
+                      <Link to="/login/email">
                         <img src={Email} />
                         <h3>Email Address</h3>
-                      </div>
+                      </Link>
+                    </div>
                   </Col>
                 </Row>
                 <div className="login-other">
-                  <h4>Didn't you receive any code? <span> <Link className="text-btn" to="/">Login</Link></span></h4>
-                  <p>By signing up, you accept our   <span><Link className="text-btn" to="/">Terms and Conditions</Link> <Link className="text-btn" to="/">Privacy Policy</Link></span></p>
-                  
+                  <p>
+                    By signing up, you accept our{" "}
+                    <span>
+                      <p className="text-btn">
+                        {/* <input
+                          type="checkbox"
+                          className="mx-2"
+                          checked={Terms == true}
+                          onChange={(e) => setTerms(e.target.checked)}
+                        /> */}
+                        Terms and Conditions
+                      </p>{" "}
+                      <p>and</p>
+                      <p className="text-btn">
+                        {/* <input
+                          type="checkbox"
+                          onChange={(e) => setPrivacyPolicy(e.target.checked)}
+                          className="mx-2"
+                          checked={previacy == true}
+                        /> */}
+                        Privacy Policy
+                      </p>
+                    </span>
+                  </p>
                 </div>
               </div>
             </Col>

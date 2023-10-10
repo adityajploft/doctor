@@ -5,7 +5,9 @@ import Webcam from "react-webcam";
 const videoConstraints = {
   width: 1280,
   height: 720,
-  facingMode: "user",
+
+  // facingMode: "user",
+  facingMode: { exact: "environment" },
 };
 
 function ClickImage() {
@@ -30,7 +32,7 @@ function ClickImage() {
                     screenshotFormat="image/jpeg"
                     width={400}
                     videoConstraints={videoConstraints}
-                    mirrored={true}
+                    mirrored={false}
                   >
                     {({ getScreenshot }) => (
                       <button
